@@ -19,7 +19,7 @@ class Connect4Game():
         # 125 pixels for each square (4x4)
         self.fulltitle = pygame.image.load("Connect4 Graphics/Fulltitle.png") # Loads the images for later use
         self.grid4x4 = pygame.image.load("Connect4 Graphics/Grid.png")
-        # make a 5 by 5 grid too
+        # make a 5 by 5 grid too OR draw with code (easier and expandable)
 
         checkersize = 100
         self.redchecker = pygame.image.load("Connect4 Graphics/redchecker.png")
@@ -34,9 +34,10 @@ class Connect4Game():
         pygame.init()
         pygame.display.init()
         pygame.display.set_caption("Connect_4_V1")
-        windx, windy = 500, 500
+        self.windx = 500
+        self.windy = 500
         
-        self.screen = pygame.display.set_mode((windx, windy))
+        self.screen = pygame.display.set_mode((self.windx, self.windy))
         self.clock = pygame.time.Clock() # Initializes clock
 
         self.initGraphics()
@@ -47,7 +48,10 @@ class Connect4Game():
         for x in range(4):
             self.screen.blit(self.bluechecker, (n,0))
             n+=125
-        pygame.draw.rect(self.screen, (255, 0, 0), (0, 0, 125, 125))
+        pygame.draw.rect(self.screen, (255, 0, 0), (0, 0, 125, self.windy))   # rect are coords for rows
+        pygame.draw.rect(self.screen, (0, 255, 0), (125, 0, 125, 500))
+        pygame.draw.rect(self.screen, (0, 0, 255), (250, 0, 125, 500))
+        pygame.draw.rect(self.screen, (255, 255, 0), (375, 0, 125, 500))
 
     def update(self):
         self.clock.tick(60) # Makes the game 60fps (wowowo)
